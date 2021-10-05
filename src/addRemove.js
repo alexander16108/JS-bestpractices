@@ -11,13 +11,13 @@ const addIndex = () => {
     return size;
   }
   return savedTasks[savedTasks.length - 1].index + 1;
-}
+};
 
 const addTask = (book) => {
   savedTasks.push(book);
   localStorage.setItem('savedTasks', JSON.stringify(savedTasks));
   size += 1;
-}
+};
 
 const updateList = () => {
   let newIndex = 0;
@@ -25,7 +25,26 @@ const updateList = () => {
   // eslint-disable-next-line no-return-assign
   savedTasks.filter((obj) => (obj.index = newIndex++));
   localStorage.setItem('savedTasks', JSON.stringify(savedTasks));
-}
+};
+
+const editTask = (e, i) => {
+  if (e.key === 'Enter') {
+    savedTasks[i].description = e.target.innerHTML;
+    localStorage.setItem('savedTasks', JSON.stringify(savedTasks));
+    displayAllTask();
+    e.preventDefault();
+  }
+  e.target.parentNode.children[1].contentEditable = true;
+};
+
+// to Delete task from the list and
+// updating the local storage at the same time
+
+const deleteTask = (e, i) => {
+  savedTasks.splice(i, 1);
+  localStorage.setItem('savedTasks', JSON.stringify(savedTasks));
+  displayAllTask();
+};
 
 // Creating Elements Individually and
 //  displaying the on the todo List
@@ -77,32 +96,13 @@ const displayAllTask = () => {
     li.appendChild(button);
     ul.appendChild(li);
   });
-}
-
-const editTask = (e, i) => {
-  if (e.key === 'Enter') {
-    savedTasks[i].description = e.target.innerHTML;
-    localStorage.setItem('savedTasks', JSON.stringify(savedTasks));
-    displayAllTask();
-    e.preventDefault();
-  }
-  e.target.parentNode.children[1].contentEditable = true;
-}
-
-// to Delete task from the list and
-// updating the local storage at the same time
-
-const deleteTask = (e, i) => {
-  savedTasks.splice(i, 1);
-  localStorage.setItem('savedTasks', JSON.stringify(savedTasks));
-  displayAllTask();
-}
+};
 
 const clearContent = () => {
   savedTasks = savedTasks.filter((object) => object.completed !== true);
   localStorage.setItem('savedTasks', JSON.stringify(savedTasks));
   displayAllTask();
-}
+};
 
 export default function addTasks(v) {
   addTask({
