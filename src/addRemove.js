@@ -36,7 +36,6 @@ const editTask = (e, i) => {
   e.target.parentNode.children[1].contentEditable = true;
 };
 
-
 const deleteTask = (e, i) => {
   savedTasks.splice(i, 1);
   localStorage.setItem('savedTasks', JSON.stringify(savedTasks));
