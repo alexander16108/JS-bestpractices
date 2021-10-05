@@ -36,16 +36,11 @@ const editTask = (e, i) => {
   e.target.parentNode.children[1].contentEditable = true;
 };
 
-// to Delete task from the list and
-// updating the local storage at the same time
 
 const deleteTask = (e, i) => {
   savedTasks.splice(i, 1);
   localStorage.setItem('savedTasks', JSON.stringify(savedTasks));
 };
-
-// Creating Elements Individually and
-//  displaying the on the todo List
 
 const displayAllTask = () => {
   ul.innerHTML = '';
