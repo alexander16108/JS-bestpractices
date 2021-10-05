@@ -82,7 +82,7 @@ const displayAllTask = () => {
     });
     button.addEventListener('click', (e) => {
       button.classList.add('fa-trash-alt', 'trash', 'flex-md', 'bd-ol');
-      document.querySelector('.fa-trash-alt').addEventListener('click', (e) => { deleteTask(e, i); })
+      document.querySelector('.fa-trash-alt').addEventListener('click', (e) => { deleteTask(e, i); });
       editTask(e, i);
     });
 
