@@ -31,7 +31,6 @@ const editTask = (e, i) => {
   if (e.key === 'Enter') {
     savedTasks[i].description = e.target.innerHTML;
     localStorage.setItem('savedTasks', JSON.stringify(savedTasks));
-    displayAllTask();
     e.preventDefault();
   }
   e.target.parentNode.children[1].contentEditable = true;
@@ -43,7 +42,6 @@ const editTask = (e, i) => {
 const deleteTask = (e, i) => {
   savedTasks.splice(i, 1);
   localStorage.setItem('savedTasks', JSON.stringify(savedTasks));
-  displayAllTask();
 };
 
 // Creating Elements Individually and
@@ -84,7 +82,7 @@ const displayAllTask = () => {
     });
     button.addEventListener('click', (e) => {
       button.classList.add('fa-trash-alt', 'trash', 'flex-md', 'bd-ol');
-      document.querySelector('.fa-trash-alt').addEventListener('click', (e) => { deleteTask(e, i) })
+      document.querySelector('.fa-trash-alt').addEventListener('click', (e) =>{ deleteTask(e, i) })
       editTask(e, i);
     });
 
